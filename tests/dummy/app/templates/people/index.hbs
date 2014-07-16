@@ -1,0 +1,7 @@
+{{link-to 'New' 'people.new'}}
+
+<div class="names">
+  {{#each person in model}}
+    {{link-to person.name 'people.edit' person class="person-edit"}}
+  {{/each}}
+</div>
