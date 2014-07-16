@@ -44,7 +44,7 @@ argument for you to handle. One possible override could be:
 ```js
 export default Ember.Route.extend(DataRouteMixin, {
   willTransitionConfirm: function() {
-    return window.confirm("You have unsaved changes. Are you sure you want to continue?");
+    return window.confirm("You have unsaved changes that will be lost. Do you want to continue?");
   }
 });
 ```
