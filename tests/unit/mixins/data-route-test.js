@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import DataRouteMixin from '../../../mixins/data-route';
+import DataRouteMixin from 'ember-data-route/mixins/data-route';
 
 module('DataRouteMixin');
 

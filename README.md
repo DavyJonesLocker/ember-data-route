@@ -22,7 +22,7 @@ Add the mixin to any route you want:
 
 ```js
 import Ember from 'ember';
-import DataRoute from 'my-project/mixins/data-route';
+import DataRoute from 'ember-data-route/mixins/data-route';
 
 export default Ember.Route.extend(DataRoute, {
   ...
