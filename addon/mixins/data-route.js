@@ -3,9 +3,11 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   deactivate: function() {
     var model = this.get('controller.model');
-    model.rollback();
-    if (model.get('isNew')) {
-      model.deleteRecord();
+    if(!model.get('isDeleted')) {
+      model.rollback();
+      if (model.get('isNew')) {
+        model.deleteRecord();
+      }
     }
   },
   actions: {
