@@ -30,8 +30,11 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
-  if (environment === 'production') {
+  if (environment === 'test') {
+    ENV.baseURL = '/'; // Testem prefers this...
+  }
 
+  if (environment === 'production') {
   }
 
   return ENV;
