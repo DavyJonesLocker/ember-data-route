@@ -1,7 +1,7 @@
 {
   "name": "ember-data-route",
   "version": "0.0.2",
-  "description": "",
+  "description": "Ensure you clean up after your models. Any routes you deactivate will check the model to ensure it is not unsaved. If it is it will either rollback or remove the model from the store depending if has been previously persisted.",
   "directories": {
     "test": "test"
   },
@@ -13,7 +13,10 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dockyard/ember-data-route.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
