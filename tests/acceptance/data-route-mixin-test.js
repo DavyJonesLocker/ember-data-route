@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
+import Pretender from 'pretender';
 
 var App, server, oldConfirm;
 
