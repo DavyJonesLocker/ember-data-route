@@ -37,7 +37,7 @@ However, you may want to detect if this is going to happen and alert the
 user of changes that will be lost. Typically you could use
 `window.confirm` to allow the user to decide to proceed or not. In the
 route you are mixing into you can provide your own
-`willTransitionConfirmation` function to handle this. By default this
+`willTransitionConfirm` function to handle this. By default this
 function returns `true` and is passed the `transition` object as an
 argument for you to handle. One possible override could be:
 
