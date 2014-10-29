@@ -42,11 +42,16 @@ module('Acceptance: DataRouteMixin existing record', {
     oldConfirm = window.confirm;
     App = startApp();
     server = new Pretender(function() {
+      var people = [
+        { id: 1, name: "Barney Rubble" },
+        { id: 2, name: "Betty Rubble"}
+      ];
       this.get('/people', function(request) {
-        var people = [
-          { id: 1, name: "Barney Rubble" }
-        ];
         return [200, {"Content-Type": "application/json"}, JSON.stringify({people: people})];
+      });
+
+      this.get('/people/:id', function(request) {
+        return [200, {"Content-Type": "application/json"}, JSON.stringify({ person: people[request.params.id - 1]} )];
       });
     });
   },
@@ -97,5 +102,26 @@ test('does not transition with confirm false', function() {
         equal(currentPath(), "people.edit");
       });
     });
+  });
+});
+
+test('removes record from store when transitioning within the same route', function() {
+  window.confirm = function() {
+    return true;
+  };
+
+  visit('/people/1/edit');
+  andThen(function() {
+    fillIn('input', 'Jackson');
+  });
+
+  visit('/people/2/edit');
+  andThen(function() {
+    fillIn('input', 'Cardarella');
+  });
+
+  visit('/people/1/edit');
+  andThen(function() {
+    ok(Ember.$('input.name').val().match(/Jackson/) === null, '"Jackson" should not be found');
   });
 });
