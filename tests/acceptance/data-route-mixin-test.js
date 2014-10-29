@@ -24,16 +24,14 @@ test('removes record from store', function() {
 
   andThen(function() {
     ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
+  });
 
-    click('a');
+  click('a');
+  fillIn('input', 'Fred Flinstone');
+  click('a');
 
-    andThen(function() {
-      fillIn('input', 'Fred Flinstone');
-      click('a');
-      andThen(function() {
-        ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
-      });
-    });
+  andThen(function() {
+    ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
   });
 });
 
@@ -70,17 +68,16 @@ test('rolls back changes with confirm true', function() {
 
   andThen(function() {
     ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+  });
 
-    click('a.person-edit');
+  click('a.person-edit');
 
-    andThen(function() {
-      fillIn('input', 'Fred Flinstone');
-      click('a');
-      andThen(function() {
-        ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
-        ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
-      });
-    });
+  fillIn('input', 'Fred Flinstone');
+  click('a');
+
+  andThen(function() {
+    ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+    ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
   });
 });
 
@@ -92,16 +89,14 @@ test('does not transition with confirm false', function() {
 
   andThen(function() {
     ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+  });
 
-    click('a.person-edit');
+  click('a.person-edit');
+  fillIn('input', 'Fred Flinstone');
+  click('a');
 
-    andThen(function() {
-      fillIn('input', 'Fred Flinstone');
-      click('a');
-      andThen(function() {
-        equal(currentPath(), "people.edit");
-      });
-    });
+  andThen(function() {
+    equal(currentPath(), "people.edit");
   });
 });
 
