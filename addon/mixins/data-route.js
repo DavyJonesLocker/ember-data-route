@@ -4,9 +4,10 @@ export default Ember.Mixin.create({
   resetController: function() {
     var model = this.get('controller.model');
     if(!model.get('isDeleted')) {
-      model.rollback();
       if (model.get('isNew')) {
         model.deleteRecord();
+      } else {
+        model.rollback();
       }
     }
   },
