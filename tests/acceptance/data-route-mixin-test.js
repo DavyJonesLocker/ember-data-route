@@ -11,6 +11,9 @@ module('Acceptance: DataRouteMixin new record', {
       this.get('/people', function(request) {
         return [200, {"Content-Type": "application/json"}, JSON.stringify({people: []})];
       });
+      this.get('/organizations/1', function(request) {
+        return [200, {"Content-Type": "application/json"}, JSON.stringify({organization: {"id": 1}})];
+      });
     });
   },
   teardown: function() {
@@ -32,7 +35,13 @@ test('removes record from store', function() {
 
   andThen(function() {
     ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
+
+    var store = App.__container__.lookup('store:main');
+    store.find('organization', 1).then(function(organization) {
+      equal(Ember.isEmpty(organization.get('people')), true, "Organization people should be empty");
+    });
   });
+
 });
 
 module('Acceptance: DataRouteMixin existing record', {
