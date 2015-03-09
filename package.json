@@ -1,6 +1,6 @@
 {
   "name": "ember-data-route",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ensure you clean up after your models. Any routes you deactivate will check the model to ensure it is not unsaved. If it is it will either rollback or remove the model from the store depending if has been previously persisted.",
   "directories": {
     "doc": "doc",
