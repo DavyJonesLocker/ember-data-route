@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
@@ -22,11 +23,11 @@ module('Acceptance: DataRouteMixin new record', {
   }
 });
 
-test('removes record from store', function() {
+test('removes record from store', function(assert) {
   visit('/people');
 
   andThen(function() {
-    ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
+    assert.ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
   });
 
   click('a');
@@ -34,11 +35,11 @@ test('removes record from store', function() {
   click('a');
 
   andThen(function() {
-    ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
+    assert.ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
 
     var store = App.__container__.lookup('store:main');
     store.find('organization', 1).then(function(organization) {
-      equal(Ember.isEmpty(organization.get('people')), true, "Organization people should be empty");
+      assert.equal(Ember.isEmpty(organization.get('people')), true, "Organization people should be empty");
     });
   });
 
@@ -69,14 +70,14 @@ module('Acceptance: DataRouteMixin existing record', {
   }
 });
 
-test('rolls back changes with confirm true', function() {
+test('rolls back changes with confirm true', function(assert) {
   window.confirm = function() {
     return true;
   };
   visit('/people');
 
   andThen(function() {
-    ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+    assert.ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
   });
 
   click('a.person-edit');
@@ -85,19 +86,19 @@ test('rolls back changes with confirm true', function() {
   click('a');
 
   andThen(function() {
-    ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
-    ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
+    assert.ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+    assert.ok(Ember.$('.names').text().match(/Fred Flinstone/) === null, '"Fred Flinstone" should not be found');
   });
 });
 
-test('does not transition with confirm false', function() {
+test('does not transition with confirm false', function(assert) {
   window.confirm = function() {
     return false;
   };
   visit('/people');
 
   andThen(function() {
-    ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+    assert.ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
   });
 
   click('a.person-edit');
@@ -105,11 +106,11 @@ test('does not transition with confirm false', function() {
   click('a');
 
   andThen(function() {
-    equal(currentPath(), "people.edit");
+    assert.equal(currentPath(), "people.edit");
   });
 });
 
-test('removes record from store when transitioning within the same route', function() {
+test('removes record from store when transitioning within the same route', function(assert) {
   window.confirm = function() {
     return true;
   };
@@ -126,6 +127,6 @@ test('removes record from store when transitioning within the same route', funct
 
   visit('/people/1/edit');
   andThen(function() {
-    ok(Ember.$('input.name').val().match(/Jackson/) === null, '"Jackson" should not be found');
+    assert.ok(Ember.$('input.name').val().match(/Jackson/) === null, '"Jackson" should not be found');
   });
 });
