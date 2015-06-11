@@ -1,7 +1,7 @@
 {{link-to 'New' 'people.new'}}
 
 <div class="names">
-  {{#each person in model}}
+  {{#each model as |person|}}
     {{link-to person.name 'people.edit' person class="person-edit"}}
   {{/each}}
 </div>
