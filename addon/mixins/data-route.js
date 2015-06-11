@@ -1,26 +1,6 @@
 import Ember from 'ember';
+import DataRoute from 'ember-data-route';
 
-export default Ember.Mixin.create({
-  resetController: function() {
-    var model = this.get('controller.model');
-    if(!model.get('isDeleted')) {
-      if (model.get('isNew')) {
-        model.deleteRecord();
-      } else {
-        model.rollback();
-      }
-    }
-  },
-  actions: {
-    willTransition: function(transition) {
-      var model = this.get('controller.model');
-      if (model.get('isDirty') && !this.willTransitionConfirm(transition)) {
-        transition.abort();
-      }
-    }
-  },
-  willTransitionConfirm: function(transition) {
-    /*jshint unused:false*/
-    return true;
-  }
-});
+Ember.deprecate(`This module is deprecated. Import from 'ember-data-route' instead of 'ember-data-route/mixins/data-route'`);
+
+export default DataRoute;

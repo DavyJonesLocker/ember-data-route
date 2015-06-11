@@ -95,15 +95,18 @@ test('does not transition with confirm false', function(assert) {
   window.confirm = function() {
     return false;
   };
+
   visit('/people');
 
   andThen(function() {
     assert.ok(Ember.$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
+    click('a.person-edit');
   });
 
-  click('a.person-edit');
-  fillIn('input', 'Fred Flinstone');
-  click('a');
+  andThen(function() {
+    fillIn('input', 'Fred Flinstone');
+    click('a');
+  });
 
   andThen(function() {
     assert.equal(currentPath(), "people.edit");
