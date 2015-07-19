@@ -13,7 +13,7 @@ export default Mixin.create({
       if (get(model, 'isNew')) {
         model.deleteRecord();
       } else {
-        model.rollback();
+        model.rollbackAttribute();
       }
     }
   },
@@ -21,7 +21,7 @@ export default Mixin.create({
     willTransition(transition) {
       let model = get(this, 'controller.model');
 
-      if (get(model, 'isDirty') && !this.willTransitionConfirm(transition)) {
+      if (get(model, 'hasDirtyAttributes') && !this.willTransitionConfirm(transition)) {
         transition.abort();
       }
     }
