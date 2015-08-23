@@ -13,7 +13,7 @@ export default Mixin.create({
       if (get(model, 'isNew')) {
         model.deleteRecord();
       } else {
-        model.rollbackAttribute();
+        model.rollbackAttributes();
       }
     }
   },
