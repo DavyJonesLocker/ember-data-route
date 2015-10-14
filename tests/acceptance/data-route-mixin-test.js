@@ -91,12 +91,9 @@ test('rolls back changes with confirm true', function(assert) {
     assert.ok(E$('.names').text().match(/Barney Rubble/) !== null, '"Barney Rubble" should have be found');
   });
 
-  console.log('1');
   click('a.person-edit');
 
-  console.log('2');
   fillIn('input', 'Fred Flinstone');
-  console.log('3');
   click('a');
 
   andThen(function() {
