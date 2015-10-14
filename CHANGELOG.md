@@ -1,3 +1,9 @@
+# 0.2.0
+
+* Updated for latest ember-cli
+* Added ember-suave
+* Updated for Ember 2.0+ & Ember Data 2.0+
+
 # 0.1.0
 
 * Updated for latest ember-cli

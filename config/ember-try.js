@@ -2,33 +2,39 @@ module.exports = {
   scenarios: [
     {
       name: 'default',
-      dependencies: { }
+      dependencies: { },
     },
     {
       name: 'ember-release',
       dependencies: {
-        'ember': 'components/ember#release'
+        'ember': 'components/ember#release',
+        'ember-data': 'components/ember-data#release'
       },
-      resolutions: {
-        'ember': 'release'
+      "resolutions": {
+        "ember": "release",
+        "ember-data": "release"
       }
     },
     {
       name: 'ember-beta',
       dependencies: {
-        'ember': 'components/ember#beta'
+        'ember': 'components/ember#beta',
+        'ember-data': 'components/ember-data#beta'
       },
-      resolutions: {
-        'ember': 'beta'
+      "resolutions": {
+        "ember": "beta",
+        "ember-data": "beta"
       }
     },
     {
       name: 'ember-canary',
       dependencies: {
-        'ember': 'components/ember#canary'
+        'ember': 'components/ember#canary',
+        'ember-data': 'components/ember-data#canary'
       },
-      resolutions: {
-        'ember': 'canary'
+      "resolutions": {
+        "ember": "canary",
+        "ember-data": "canary"
       }
     }
   ]
