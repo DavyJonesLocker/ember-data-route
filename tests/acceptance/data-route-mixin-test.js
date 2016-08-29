@@ -8,6 +8,7 @@ let App, server, oldConfirm;
 
 const {
   get,
+  isEmpty,
   run,
   $: E$
 } = Ember;
@@ -49,7 +50,7 @@ test('removes record from store', function(assert) {
 
     let store = App.__container__.lookup('service:store');
     store.findRecord('organization', 1).then(function(organization) {
-      assert.equal(Ember.isEmpty(get(organization, 'people')), true, 'Organization people should be empty');
+      assert.equal(isEmpty(get(organization, 'people')), true, 'Organization people should be empty');
     });
   });
 
