@@ -1,6 +1,6 @@
-# Ember Data Route
+# Ember Data Route [![Build](https://travis-ci.org/dockyard/ember-data-route.svg?branch=master)](https://travis-ci.org/dockyard/ember-data-route)
 
-[![Build](https://travis-ci.org/dockyard/ember-data-route.svg?branch=master)](https://travis-ci.org/dockyard/ember-data-route)
+**[ember-data-route is built and maintained by DockYard, contact us for expert Ember.js consulting](https://dockyard.com/ember-consulting)**.
 
 ## About ##
 
