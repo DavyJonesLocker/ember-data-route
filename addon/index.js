@@ -6,8 +6,10 @@ const {
 } = Ember;
 
 export default Mixin.create({
+  primaryModel: 'model',
   resetController() {
-    let model = get(this, 'controller.model');
+    let primaryModel = get(this, 'primaryModel');
+    let model = get(this, `controller.${primaryModel}`);
 
     if (!get(model, 'isDeleted')) {
       model.rollbackAttributes();
@@ -15,7 +17,8 @@ export default Mixin.create({
   },
   actions: {
     willTransition(transition) {
-      let model = get(this, 'controller.model');
+      let primaryModel = get(this, 'primaryModel');
+      let model = get(this, `controller.${primaryModel}`);
 
       if (get(model, 'hasDirtyAttributes') && !this.willTransitionConfirm(transition)) {
         transition.abort();
