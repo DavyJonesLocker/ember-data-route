@@ -43,11 +43,23 @@ argument for you to handle. One possible override could be:
 
 ```js
 export default Ember.Route.extend(DataRouteMixin, {
-  willTransitionConfirm: function() {
+  willTransitionConfirm() {
     return window.confirm("You have unsaved changes that will be lost. Do you want to continue?");
   }
 });
 ```
+
+### Configuring Which Model ###
+
+Sometimes `model` isn't the place where your primary model is located, so setting `primaryModel` to something else would allow you to override that setting.
+
+```js
+export default Ember.Route.extend(DataRouteMixin, {
+  primaryModel: 'user'
+});
+```
+
+This will look on `controller.user`, instead of `controller.model`.
 
 ## Authors ##
 
